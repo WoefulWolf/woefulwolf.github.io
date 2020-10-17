@@ -103,6 +103,7 @@ iframe {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position-x: center;
   min-height: 91%;
 }
 
@@ -133,6 +134,7 @@ iframe {
 @media only screen and (max-device-width: 1600px) {
   .bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
     background-attachment: scroll;
+    background-position-x: center;
     min-height: 90%;
   }
 
