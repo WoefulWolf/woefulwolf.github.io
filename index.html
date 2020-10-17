@@ -1,14 +1,155 @@
-<!doctype html>
-
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-
-  <title>Woeful_Wolf</title>
-
-</head>
-
+<!DOCTYPE html>
+<html>
+<title>Woeful_Wolf's GitHub Projects</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/0fc0d9c0c0.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="css/styles.css?v=1.0">
 <body>
-    <h1>Hello World</h1>
+
+<?php
+//pass in the reference to the custom field you made
+//earlier and store it as a PHP variable
+  $videoid = get_field('feature_video_url');
+  $videourl = 'https://www.youtube.com/embed/' . $videoid;
+?>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+        <i class="fa fa-bars"></i>
+    </a>
+    <a href="#home" class="w3-bar-item w3-button">HOME</a>
+    <a href="#home" class="w3-bar-item w3-button w3-hide-small"><i class="fas fa-file-import"></i> NieR2Blender</a>
+    <a href="#blender2nier" class="w3-bar-item w3-button w3-hide-small"><i class="fas fa-file-export"></i> Blender2NieR</a>
+    <a href="#naroip" class="w3-bar-item w3-button w3-hide-small"><i class="fas fa-users"></i> NARoIP</a>
+    <a href="#brp" class="w3-bar-item w3-button w3-hide-small"><i class="fab fa-discord"></i> Blender Rich Presence</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium">
+    <a href="#home" class="w3-bar-item w3-button" onclick="toggleFunction()"><i class="fas fa-file-import"></i>  NieR2Blender</a>
+    <a href="#blender2nier" class="w3-bar-item w3-button" onclick="toggleFunction()"><i class="fas fa-file-export"></i>  Blender2NieR</a>
+    <a href="#naroip" class="w3-bar-item w3-button" onclick="toggleFunction()"><i class="fas fa-users"></i>  NARoIP</a>
+    <a href="#brp" class="w3-bar-item w3-button" onclick="toggleFunction()"><i class="fab fa-discord"></i>  Blender Rich Presence</a>
+  </div>
+</div>
+
+<!-- First Parallax Image with Logo Text -->
+<div class="bgimg-1 w3-display-container" id="home">
+  <div class="glass left vertical-center">
+    <h1 class="title">NieR2Blender</h1>
+        <p class=desc>
+            A Blender add-on for importing WMB3 models. <br>
+            Specifically created for NieR:Automata and is the father of Blender2NieR. <br>
+            Automatically creates a basic Principled BSDF Shader setup for use with Eevee or Cycles.<br>
+            Can also be used as a DAT/DTT unpacker. 
+        </p>
+        <div class="button-container">
+            <button type="button" class="item-button" onclick='window.open("https://github.com/WoefulWolf/NieR2Blender_2_8")'>GitHub Repo</button>
+            <button type="button" class="item-button" onclick='window.location.href = "https://github.com/WoefulWolf/NieR2Blender_2_8/archive/master.zip"'>Download ZIP</button>
+        </div>
+  </div>
+</div>
+
+<!-- Container (About Section) -->
+<div class="divider" id="blender2nier">
+    <a><i class="fas fa-chevron-down down-arrow"></i></a>
+</div>
+
+<!-- Second Parallax Image with Portfolio Text -->
+<div class="bgimg-2 w3-display-container">
+    <div class="glass right vertical-center">
+        <h1 class="title">Blender2NieR</h1>
+        <p class=desc>
+            World's first public WMB3 model format exporter. <br>
+            A Blender addon created specifically for all things NieR:Automata models. <br>
+            Includes a WTA/WTP exporter as well as a DAT/DTT packer. <br>
+            Reliant on my NieR2Blender add-on.
+        </p>
+        <div class="button-container">
+            <button type="button" class="item-button" onclick='window.open("https://github.com/WoefulWolf/Blender2NieR")'>GitHub Repo</button>
+            <button type="button" class="item-button" onclick='window.location.href = "https://github.com/WoefulWolf/Blender2NieR/archive/master.zip"'>Download ZIP</button>
+        </div>
+    </div>
+</div>
+
+<!-- Container (Portfolio Section) -->
+<div class="divider" id="naroip">
+    <a><i class="fas fa-chevron-down down-arrow"></i></a>
+</div>
+
+
+<!-- Third Parallax Image-->
+<div class="bgimg-3 w3-display-container">
+    <div class="glass left vertical-center">
+        <h1 class="title">NARoIP</h1>
+        <p class=desc>
+            <i>NieR:Automata Race over Internet Protocol</i><br>
+            A NieR:Automata mod that shares the location and current game phase between clients. <br>
+            Specifically designed with, and for, the speedrunning community. <br>
+            Other modifications included such as VC3Mod.
+        </p>
+        <div class="button-container">
+            <button type="button" class="item-button" onclick='window.open("https://github.com/WoefulWolf/NARoIP/releases")'>GitHub Releases</button>
+        </div>
+    </div>
+</div>
+
+<!-- Container (Contact Section) -->
+<div class="divider" id="brp">
+    <a><i class="fas fa-chevron-down down-arrow"></i></a>
+</div>
+
+<!-- Fourth Parallax Image-->
+<div class="bgimg-4 w3-display-container">
+    <div class="glass right vertical-center">
+        <h1 class="title">Blender Rich Presence</h1>
+        <p class=desc>
+            An add-on that implements Discord's Rich Presence system right into Blender. <br>
+            Displays rendering time, project name, vertex count, etc. <br>
+        </p>
+        <div class="button-container">
+            <button type="button" class="item-button" onclick='window.open("https://github.com/WoefulWolf/Blender-Rich-Presence")'>GitHub Repo</button>
+            <button type="button" class="item-button" onclick='window.location.href = "https://github.com/WoefulWolf/Blender-Rich-Presence/archive/master.zip"'>Download ZIP</button>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center divider w3-padding-32">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <br>
+  <br>
+  <i>Copyright © 2020 Woeful_Wolf</i>
+</footer>
+ 
+<script>
+// Change style of navbar on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+        navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-black";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-black", "");
+    }
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function toggleFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
 </body>
 </html>
