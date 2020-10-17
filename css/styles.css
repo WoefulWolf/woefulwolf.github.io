@@ -32,6 +32,7 @@ body, html {
 }
 
 .item-button {
+    cursor: pointer;
     margin: 25pt;
     margin-top: 0pt;
     color: white;
