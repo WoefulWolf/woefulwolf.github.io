@@ -17,6 +17,7 @@
         <i class="fa fa-bars"></i>
     </a>
     <a href="https://github.com/WoefulWolf" class="w3-bar-item w3-button">HOME</a>
+    <a href="#replicant2blender" class="w3-bar-item w3-button w3-hide-small"><i class="fas fa-file-import"></i> Replicant2Blender</a>
     <a href="#nier2blender" class="w3-bar-item w3-button w3-hide-small"><i class="fas fa-file-import"></i> NieR2Blender</a>
     <a href="#blender2nier" class="w3-bar-item w3-button w3-hide-small"><i class="fas fa-file-export"></i> Blender2NieR</a>
     <a href="#naroip" class="w3-bar-item w3-button w3-hide-small"><i class="fas fa-users"></i> NARoIP</a>
@@ -25,6 +26,7 @@
 
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium">
+  	<a href="#replicant2blender" class="w3-bar-item w3-button" onclick="toggleFunction()"><i class="fas fa-file-import"></i>  Replicant2Blender</a>
     <a href="#nier2blender" class="w3-bar-item w3-button" onclick="toggleFunction()"><i class="fas fa-file-import"></i>  NieR2Blender</a>
     <a href="#blender2nier" class="w3-bar-item w3-button" onclick="toggleFunction()"><i class="fas fa-file-export"></i>  Blender2NieR</a>
     <a href="#naroip" class="w3-bar-item w3-button" onclick="toggleFunction()"><i class="fas fa-users"></i>  NARoIP</a>
@@ -32,9 +34,30 @@
   </div>
 </div>
 
-<!-- First Parallax Image with nier2blender -->
-<div class="bgimg-1 w3-display-container" id="nier2blender">
+<!-- replicant2blender -->
+<div class="bgimg bgimg-replicant w3-display-container" id="replicant2blender">
   <div class="glass left vertical-center">
+    <h1 class="title">Replicant2Blender</h1>
+        <p class=desc>
+            A Blender add-on for importing NieR Replicant ver.1.22474487139... models. <br>
+            Public and functional within a week of the game's initial release!<br>
+            Parses ToyLogic's inhouse engine (Toylo Engine) PACK files in search for mesh assets which it then converts and imports into relative Blender data.
+        </p>
+        <div class="button-container">
+            <button type="button" class="item-button" onclick='window.open("https://github.com/WoefulWolf/Replicant2Blender")'>GitHub Repo</button>
+            <button type="button" class="item-button" onclick='window.location.href = "https://github.com/WoefulWolf/Replicant2Blender/archive/refs/heads/main.zip"'>Download ZIP</button>
+        </div>
+  </div>
+</div>
+
+<!-- Container (nier2blender Section) -->
+<div class="divider" id="nier2blender">
+    <a><i class="fas fa-chevron-down down-arrow"></i></a>
+</div>
+
+<!-- nier2blender -->
+<div class="bgimg bgimg-nier2blender w3-display-container">
+  <div class="glass right vertical-center">
     <h1 class="title">NieR2Blender</h1>
         <p class=desc>
             A Blender add-on for importing WMB3 models. <br>
@@ -54,9 +77,9 @@
     <a><i class="fas fa-chevron-down down-arrow"></i></a>
 </div>
 
-<!-- Second Parallax Image with Portfolio Text -->
-<div class="bgimg-2 w3-display-container">
-    <div class="glass right vertical-center">
+<!-- blender2nier -->
+<div class="bgimg bgimg-blender2nier w3-display-container">
+    <div class="glass left vertical-center">
         <h1 class="title">Blender2NieR</h1>
         <p class=desc>
             World's first public WMB3 model format exporter. <br>
@@ -77,9 +100,9 @@
 </div>
 
 
-<!-- Third Parallax Image-->
-<div class="bgimg-3 w3-display-container">
-    <div class="glass left vertical-center">
+<!-- naroip-->
+<div class="bgimg bgimg-naroip w3-display-container">
+    <div class="glass right vertical-center">
         <h1 class="title">NARoIP</h1>
         <p class=desc>
             <i>NieR:Automata Race over Internet Protocol</i><br>
@@ -99,9 +122,9 @@
     <a><i class="fas fa-chevron-down down-arrow"></i></a>
 </div>
 
-<!-- Fourth Parallax Image-->
-<div class="bgimg-4 w3-display-container">
-    <div class="glass right vertical-center">
+<!-- brp-->
+<div class="bgimg bgimg-brp w3-display-container">
+    <div class="glass left vertical-center">
         <h1 class="title">Blender Rich Presence</h1>
         <p class=desc>
             An add-on that implements Discord's Rich Presence system right into Blender. <br>
@@ -116,10 +139,10 @@
 
 <!-- Footer -->
 <footer class="w3-center divider w3-padding-32">
-  <a href="#nier2blender" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <a href="#replicant2blender" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
   <br>
   <br>
-  <i>Copyright © 2020 Woeful_Wolf</i>
+  <i>Copyright © 2021 Woeful_Wolf</i>
 </footer>
  
 <script>
