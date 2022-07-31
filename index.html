@@ -8,6 +8,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/0fc0d9c0c0.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="css/styles.css?v=1.0">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.142.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.142.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.142.0/examples/js/loaders/GLTFLoader.js"></script>
+</head>
+
 <body>
 
 <!-- Navbar (sit on top) -->
@@ -17,21 +23,96 @@
         <i class="fa fa-bars"></i>
     </a>
     <a href="https://github.com/WoefulWolf" class="w3-bar-item w3-button">HOME</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small"><i class="fas fa-file-export"></i> NieR2Blender2NieR</a>
     <a href="#replicant2blender" class="w3-bar-item w3-button w3-hide-small"><i class="fas fa-file-import"></i> Replicant2Blender</a>
-    <a href="#nier2blender" class="w3-bar-item w3-button w3-hide-small"><i class="fas fa-file-import"></i> NieR2Blender</a>
-    <a href="#blender2nier" class="w3-bar-item w3-button w3-hide-small"><i class="fas fa-file-export"></i> Blender2NieR</a>
     <a href="#naroip" class="w3-bar-item w3-button w3-hide-small"><i class="fas fa-users"></i> NARoIP</a>
     <a href="#brp" class="w3-bar-item w3-button w3-hide-small"><i class="fab fa-discord"></i> Blender Rich Presence</a>
   </div>
 
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium">
-  	<a href="#replicant2blender" class="w3-bar-item w3-button" onclick="toggleFunction()"><i class="fas fa-file-import"></i>  Replicant2Blender</a>
-    <a href="#nier2blender" class="w3-bar-item w3-button" onclick="toggleFunction()"><i class="fas fa-file-import"></i>  NieR2Blender</a>
-    <a href="#blender2nier" class="w3-bar-item w3-button" onclick="toggleFunction()"><i class="fas fa-file-export"></i>  Blender2NieR</a>
+    <a href="#" class="w3-bar-item w3-button" onclick="toggleFunction()"><i class="fas fa-file-export"></i>  NieR2Blender2NieR</a>
+  	<a href="#replicant2blender" class="w3-bar-item w3-button" onclick="toggleFunction()"><i class="fas fa-file-import"></i>  Replicant2Blender</a>    
     <a href="#naroip" class="w3-bar-item w3-button" onclick="toggleFunction()"><i class="fas fa-users"></i>  NARoIP</a>
     <a href="#brp" class="w3-bar-item w3-button" onclick="toggleFunction()"><i class="fab fa-discord"></i>  Blender Rich Presence</a>
   </div>
+</div>
+
+<!-- blender2nier -->
+<div class="bgimg bgimg-blender2nier w3-display-container">
+    <div class="glass right vertical-center">
+        <h1 class="title">NieR2Blender2NieR</h1>
+        <p class=desc>
+            World's first public PlatinumGames format exporter - now exporting a lot more!<br>
+            A Blender add-on created specifically for all things NieR:Automata models. <br>
+            Includes all the importers, visualizers, tools and exporters for modding NieR:Automata models.
+        </p>
+        <div class="button-container">
+            <button type="button" class="item-button" onclick='window.open("https://github.com/WoefulWolf/NieR2Blender2NieR")'>GitHub Repo</button>
+            <button type="button" class="item-button" onclick='window.location.href = "https://github.com/WoefulWolf/NieR2Blender2NieR/archive/master.zip"'>Download ZIP</button>
+        </div>
+    </div>
+    <div class="glass left vertical-center canvas">
+        <canvas id="b2n-canvas"></canvas>
+        <script type="text/javascript">
+            {
+            const canvas = document.querySelector('#b2n-canvas');
+            const renderer = new THREE.WebGLRenderer({canvas, alpha: true, antialias: true});
+            const camera = new THREE.PerspectiveCamera( 70, 1, 0.1, 1000 );
+            const scene = new THREE.Scene();
+
+            const loader = new THREE.GLTFLoader();
+            loader.load(
+                'src/Noelle.glb',
+                function ( gltf ) {
+                    var newMaterial = new THREE.MeshStandardMaterial();
+                    newMaterial.side = THREE.DoubleSide;
+                    newMaterial.color = new THREE.Color(0x000000);
+                    newMaterial.emissive = new THREE.Color(0x444444);
+                    gltf.scene.traverse((o) => {
+                      if (o.isMesh) o.material = newMaterial;
+                    });
+                    scene.add( gltf.scene );
+
+                    var wireframe = gltf.scene.clone();
+                    var newMaterial = new THREE.MeshStandardMaterial();
+                    newMaterial.side = THREE.DoubleSide;
+                    newMaterial.wireframe = true;
+                    newMaterial.color = new THREE.Color(0x000000);
+                    newMaterial.emissive = new THREE.Color(0x111111);
+                    wireframe.traverse((o) => {
+                      if (o.isMesh) o.material = newMaterial;
+                    });
+                    scene.add( wireframe );
+                },
+            );
+
+            const controls = new THREE.OrbitControls(camera, canvas);
+            controls.target.set(0, 1.0, 0);
+            controls.autoRotate = true;
+            camera.position.y = 1.4;
+            camera.position.z = 1.25;
+
+            function animate() {
+                requestAnimationFrame( animate );
+                controls.update();
+                if (renderer.domElement.width != canvas.clientWidth || renderer.domElement.height != canvas.clientHeight) {
+                    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+                }
+
+                renderer.render( scene, camera );
+            };
+
+            animate();
+            }
+        </script>
+    </div>
+</div>
+
+<div class="divider" id="nier2blender2nier">
+    <a><i class="fas fa-chevron-down down-arrow"></i></a>
 </div>
 
 <!-- replicant2blender -->
@@ -48,49 +129,62 @@
             <button type="button" class="item-button" onclick='window.location.href = "https://github.com/WoefulWolf/Replicant2Blender/archive/refs/heads/main.zip"'>Download ZIP</button>
         </div>
   </div>
-</div>
+    <div class="glass right vertical-center canvas">
+        <canvas id="replicant-canvas"></canvas>
+        <script type="text/javascript">
+            {
+            const canvas = document.querySelector('#replicant-canvas');
+            const renderer = new THREE.WebGLRenderer({canvas, alpha: true, antialias: true});
+            const camera = new THREE.PerspectiveCamera( 70, 1, 0.1, 1000 );
+            const scene = new THREE.Scene();
 
-<!-- Container (nier2blender Section) -->
-<div class="divider" id="nier2blender">
-    <a><i class="fas fa-chevron-down down-arrow"></i></a>
-</div>
+            const loader = new THREE.GLTFLoader();
+            loader.load(
+                'src/kaine.glb',
+                function ( gltf ) {
+                    var newMaterial = new THREE.MeshStandardMaterial();
+                    newMaterial.side = THREE.DoubleSide;
+                    newMaterial.color = new THREE.Color(0x000000);
+                    newMaterial.emissive = new THREE.Color(0x444444);
+                    gltf.scene.traverse((o) => {
+                      if (o.isMesh) o.material = newMaterial;
+                    });
+                    scene.add( gltf.scene );
 
-<!-- nier2blender -->
-<div class="bgimg bgimg-nier2blender w3-display-container">
-  <div class="glass right vertical-center">
-    <h1 class="title">NieR2Blender</h1>
-        <p class=desc>
-            A Blender add-on for importing WMB3 models. <br>
-            Specifically created for NieR:Automata and is the father of Blender2NieR. <br>
-            Automatically creates a basic Principled BSDF Shader setup for use with Eevee or Cycles.<br>
-            Can also be used as a DAT/DTT unpacker. 
-        </p>
-        <div class="button-container">
-            <button type="button" class="item-button" onclick='window.open("https://github.com/WoefulWolf/NieR2Blender_2_8")'>GitHub Repo</button>
-            <button type="button" class="item-button" onclick='window.location.href = "https://github.com/WoefulWolf/NieR2Blender_2_8/archive/master.zip"'>Download ZIP</button>
-        </div>
-  </div>
-</div>
+                    var wireframe = gltf.scene.clone();
+                    var newMaterial = new THREE.MeshStandardMaterial();
+                    newMaterial.side = THREE.DoubleSide;
+                    newMaterial.wireframe = true;
+                    newMaterial.color = new THREE.Color(0x000000);
+                    newMaterial.emissive = new THREE.Color(0x111111);
+                    wireframe.traverse((o) => {
+                      if (o.isMesh) o.material = newMaterial;
+                    });
+                    scene.add( wireframe );
+                },
+            );
 
-<!-- Container (blender2nier Section) -->
-<div class="divider" id="blender2nier">
-    <a><i class="fas fa-chevron-down down-arrow"></i></a>
-</div>
+            const controls = new THREE.OrbitControls(camera, canvas);
+            controls.target.set(0, 1.0, 0);
+            controls.autoRotate = true;
+            camera.position.y = 1.4;
+            camera.position.z = 1.25;
 
-<!-- blender2nier -->
-<div class="bgimg bgimg-blender2nier w3-display-container">
-    <div class="glass left vertical-center">
-        <h1 class="title">Blender2NieR</h1>
-        <p class=desc>
-            World's first public WMB3 model format exporter. <br>
-            A Blender add-on created specifically for all things NieR:Automata models. <br>
-            Includes a WTA/WTP exporter as well as a DAT/DTT packer. <br>
-            Reliant on my NieR2Blender add-on.
-        </p>
-        <div class="button-container">
-            <button type="button" class="item-button" onclick='window.open("https://github.com/WoefulWolf/Blender2NieR")'>GitHub Repo</button>
-            <button type="button" class="item-button" onclick='window.location.href = "https://github.com/WoefulWolf/Blender2NieR/archive/master.zip"'>Download ZIP</button>
-        </div>
+            function animate() {
+                requestAnimationFrame( animate );
+                controls.update();
+                if (renderer.domElement.width != canvas.clientWidth || renderer.domElement.height != canvas.clientHeight) {
+                    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+                }
+
+                renderer.render( scene, camera );
+            };
+
+            animate();
+            }
+        </script>
     </div>
 </div>
 
@@ -103,7 +197,7 @@
 <!-- naroip-->
 <div class="bgimg bgimg-naroip w3-display-container">
     <div class="glass right vertical-center">
-        <h1 class="title">NARoIP (Unsupported)</h1>
+        <h1 class="title">NARoIP (REPLACEMENT COMING SOON)</h1>
         <p class=desc>
             <i>NieR:Automata Race over Internet Protocol</i><br>
             A NieR:Automata mod that shares the location and current game phase between clients. <br>
